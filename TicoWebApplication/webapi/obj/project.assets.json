@@ -4524,19 +4524,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Emerson\\.nuget\\packages\\": {}
+    "C:\\Users\\W10 UEFI\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\webapi.csproj",
+      "projectUniqueName": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\webapi.csproj",
-      "packagesPath": "C:\\Users\\Emerson\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\obj\\",
+      "projectPath": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\webapi\\webapi.csproj",
+      "packagesPath": "C:\\Users\\W10 UEFI\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Emerson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\W10 UEFI\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4612,7 +4612,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
