@@ -1,11 +1,7 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace webapi.Models
+﻿namespace webapi.DTOs.StruckScale
 {
-    public class StruckScales
+    public class UpdateStruckScaleDataDTO
     {
-        public int id { get; set; }
         public double? firstScale { get; set; }
         public double? secondScale { get; set; }
         public double? results { get; set; }
@@ -15,7 +11,5 @@ namespace webapi.Models
         public string? styleScale { get; set; }
         public bool? isDone { get; set; }
         public int? struckID { get; set; }
-        [ForeignKey("struckID")]
-        public StruckInfo? StruckInfo { get; set; }
     }
 }

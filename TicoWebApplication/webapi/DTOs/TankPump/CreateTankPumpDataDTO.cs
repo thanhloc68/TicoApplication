@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace webapi.Models
+﻿namespace webapi.DTOs.TankPump
 {
-    public class TankStrucks
+    public class CreateTankPumpDataDTO
     {
-        public int id { get; set; }
         public string? sourceOfGoods { get; set; }
         public int? requestedVolume { get; set; }
         public int? pumpVolume { get; set; }
@@ -13,7 +10,5 @@ namespace webapi.Models
         public DateTime? createDate { get; set; }
         public int processing { get; set; }
         public int? struckID { get; set; }
-        [ForeignKey("struckID")]
-        public StruckInfo? StruckInfo { get; set; }
     }
 }

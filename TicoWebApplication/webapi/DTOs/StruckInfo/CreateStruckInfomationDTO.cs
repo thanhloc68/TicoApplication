@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace webapi.Models
+﻿namespace webapi.DTOs.StruckInfo
 {
-    public class StruckInfo
+    public class CreateStruckInfomationDTO
     {
-        public int id { get; set; }
         public string? carNumber { get; set; }
         public string? product { get; set; }
         public string? customer { get; set; }
@@ -12,7 +9,5 @@ namespace webapi.Models
         public bool? isDel { get; set; }
         public string? notes { get; set; }
         public DateTime? createDate { get; set; }
-        public virtual ICollection<StruckScales>? StruckScales { get; set; }
-        public virtual ICollection<TankStrucks>? TankStrucks { get; set; }
     }
 }
