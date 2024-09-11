@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using webapi.Data;
+using webapi.DTOs.StruckScale;
 using webapi.Helpers.QueryStruckScale;
 using webapi.Interface;
 using webapi.Models;
@@ -28,7 +29,7 @@ namespace webapi.Repository
             return query;
         }
 
-        public async Task<List<StruckScales>?> GetAllStruckScaleAsync(QueryObjectStruckScale query)
+        public async Task<List<StruckScales>> GetAllStruckScaleAsync(QueryObjectStruckScale query)
         {
             var list = _dbContext.StruckScale.AsNoTracking().AsQueryable();
             if (!string.IsNullOrWhiteSpace(query.styleScale)) list = list.Where(x => x.styleScale != null && x.styleScale.Contains(query.styleScale));
@@ -51,7 +52,7 @@ namespace webapi.Repository
             return query;
         }
 
-        public async Task<StruckScales?> UpdateStruckScale(int id, StruckScales struckInfo)
+        public async Task<StruckScales?> UpdateStruckScale(int id, UpdateStruckScaleDTO struckInfo)
         {
             var query = await _dbContext.StruckScale.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;

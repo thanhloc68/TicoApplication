@@ -1,11 +1,10 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webapi.Models
 {
     public class StruckScales
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public double? firstScale { get; set; }
         public double? secondScale { get; set; }
         public double? results { get; set; }

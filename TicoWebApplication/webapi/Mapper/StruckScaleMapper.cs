@@ -5,9 +5,9 @@ namespace webapi.Mapper
 {
     public static class StruckScaleMapper
     {
-        public static StruckScaleDataDTO ToStruckScaleDataDTO(this StruckScales struckScales)
+        public static StruckScaleDTO ToStruckScaleDTO(this StruckScales struckScales)
         {
-            return new StruckScaleDataDTO
+            return new StruckScaleDTO
             {
                 id = struckScales.id,
                 firstScale = struckScales.firstScale,
@@ -20,7 +20,7 @@ namespace webapi.Mapper
                 isDone = struckScales.isDone,
             };
         }
-        public static StruckScales ToCreateStruckScales(this CreateStruckScaleDataDTO struckScales)
+        public static StruckScales ToCreateStruckScales(this CreateStruckScaleDTO struckScales)
         {
             return new StruckScales
             {

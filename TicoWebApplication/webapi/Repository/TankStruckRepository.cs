@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using webapi.Data;
+using webapi.DTOs.TankPump;
 using webapi.Helpers.QueryTankPump;
 using webapi.Interface;
 using webapi.Models;
@@ -29,7 +30,7 @@ namespace webapi.Repository
             return query;
         }
 
-        public async Task<List<TankStrucks>?> GetAllStruckScaleAsync(QueryObjectTankPump query)
+        public async Task<List<TankStrucks>> GetAllStruckScaleAsync(QueryObjectTankPump query)
         {
             var list = _dbContext.TankStruck.AsNoTracking().AsQueryable();
             if (!string.IsNullOrWhiteSpace(query.sourceOfGoods)) list = list.Where(x => x.sourceOfGoods != null && x.sourceOfGoods.Contains(query.sourceOfGoods));
@@ -52,7 +53,7 @@ namespace webapi.Repository
             return query;
         }
 
-        public async Task<TankStrucks?> UpdateStruckScale(int id, TankStrucks tankStrucks)
+        public async Task<TankStrucks?> UpdateStruckScale(int id, UpdateTankPumpDTO tankStrucks)
         {
             var query = await _dbContext.TankStruck.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;

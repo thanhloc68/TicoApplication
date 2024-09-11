@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\",
+  "WorkspaceRootPath": "D:\\Project\\TicoApplication\\TicoWebApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|d:\\projects\\ticowebapplication\\ticowebapplication\\webapi\\repository\\struckscalerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|solutionrelative:webapi\\repository\\struckscalerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|d:\\project\\ticoapplication\\ticowebapplication\\webapi\\controllers\\tankpumpcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|solutionrelative:webapi\\controllers\\tankpumpcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|d:\\project\\ticoapplication\\ticowebapplication\\webapi\\controllers\\struckinfomationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B36A8-071E-4872-AB3D-64D4C2639458}|webapi\\webapi.csproj|solutionrelative:webapi\\controllers\\struckinfomationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StruckScaleRepository.cs",
-              "DocumentMoniker": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\webapi\\Repository\\StruckScaleRepository.cs",
-              "RelativeDocumentMoniker": "webapi\\Repository\\StruckScaleRepository.cs",
-              "ToolTip": "D:\\Projects\\TicoWebApplication\\TicoWebApplication\\webapi\\Repository\\StruckScaleRepository.cs",
-              "RelativeToolTip": "webapi\\Repository\\StruckScaleRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAABjAAAA",
+              "DocumentIndex": 1,
+              "Title": "StruckInfomationController.cs",
+              "DocumentMoniker": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\Controllers\\StruckInfomationController.cs",
+              "RelativeDocumentMoniker": "webapi\\Controllers\\StruckInfomationController.cs",
+              "ToolTip": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\Controllers\\StruckInfomationController.cs",
+              "RelativeToolTip": "webapi\\Controllers\\StruckInfomationController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAH4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-10T13:19:29.978Z",
+              "WhenOpened": "2024-09-11T08:25:37.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TankPumpController.cs",
+              "DocumentMoniker": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\Controllers\\TankPumpController.cs",
+              "RelativeDocumentMoniker": "webapi\\Controllers\\TankPumpController.cs",
+              "ToolTip": "D:\\Project\\TicoApplication\\TicoWebApplication\\webapi\\Controllers\\TankPumpController.cs",
+              "RelativeToolTip": "webapi\\Controllers\\TankPumpController.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAowDgAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T08:25:33.882Z",
               "EditorCaption": ""
             }
           ]

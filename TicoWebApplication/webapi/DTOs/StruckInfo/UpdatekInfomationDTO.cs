@@ -2,6 +2,7 @@
 {
     public class UpdatekInfomationDTO
     {
+        public int? id { get; set; }
         public string? carNumber { get; set; }
         public string? product { get; set; }
         public string? customer { get; set; }

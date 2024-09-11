@@ -5,9 +5,9 @@ namespace webapi.Mapper
 {
     public static class TankPumpMapper
     {
-        public static TankPumpDataDTO ToTankPumpDataDTO(this TankStrucks tankPumpData)
+        public static TankPumpDTO ToTankPumpDataDTO(this TankStrucks tankPumpData)
         {
-            return new TankPumpDataDTO
+            return new TankPumpDTO
             {
                 id = tankPumpData.id,
                 processing = tankPumpData.processing,
@@ -20,7 +20,7 @@ namespace webapi.Mapper
                 createDate = tankPumpData.createDate,
             };
         }
-        public static TankStrucks ToCreateTankStrucks(this CreateTankPumpDataDTO tankPumpData)
+        public static TankStrucks ToCreateTankStrucks(this CreateTankPumpDTO tankPumpData)
         {
             return new TankStrucks
             {

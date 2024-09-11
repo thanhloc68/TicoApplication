@@ -4,7 +4,7 @@ namespace webapi.Models
 {
     public class TankStrucks
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string? sourceOfGoods { get; set; }
         public int? requestedVolume { get; set; }
         public int? pumpVolume { get; set; }
