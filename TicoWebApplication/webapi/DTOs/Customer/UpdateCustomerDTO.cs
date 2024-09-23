@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace webapi.Models
+﻿namespace webapi.DTOs.Customer
 {
-    public class Customer
+    public class UpdateCustomerDTO
     {
         public int? id { get; set; }
         public string? shortcutName { get; set; }

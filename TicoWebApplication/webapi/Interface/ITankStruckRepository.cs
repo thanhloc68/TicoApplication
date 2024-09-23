@@ -6,10 +6,10 @@ namespace webapi.Interface
 {
     public interface ITankStruckRepository
     {
-        Task<List<TankStrucks>> GetAllStruckScaleAsync(QueryObjectTankPump query);
-        Task<TankStrucks?> GetAllStruckScaleByIdAsync(int id);
-        Task<TankStrucks?> CreateStruckScale(TankStrucks struckInfo);
-        Task<TankStrucks?> UpdateStruckScale(int id, UpdateTankPumpDTO struckInfo);
-        Task<TankStrucks?> DeleteStruckScale(int id);
+        Task<List<TankStrucks>> GetAllTankPumpAsync(QueryObjectTankPump query);
+        Task<TankStrucks?> GetAllTankPumpByIdAsync(int id);
+        Task<TankStrucks?> CreateTankPump(TankStrucks tankpumps);
+        Task<TankStrucks?> UpdateTankPump(int id, UpdateTankPumpDTO tankpumps);
+        Task<TankStrucks?> DeleteTankPump(int id);
     }
 }

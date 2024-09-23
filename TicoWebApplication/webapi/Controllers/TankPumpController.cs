@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using webapi.DTOs.StruckInfo;
-using webapi.Helpers.QueryStruckInfomation;
 using webapi.Helpers;
 using webapi.Interface;
 using webapi.Wrappers;
@@ -25,7 +23,7 @@ namespace webapi.Controllers
         {
             try
             {
-                var list = await _repository.GetAllStruckScaleAsync(queryObject);
+                var list = await _repository.GetAllTankPumpAsync(queryObject);
                 var data = list.Select(x => x.ToTankPumpDataDTO()).ToList();
                 var totalItem = data.Count();
                 var totalPage = (int)Math.Ceiling((double)totalItem / pageSize);
@@ -54,7 +52,7 @@ namespace webapi.Controllers
         {
             try
             {
-                var list = await _repository.GetAllStruckScaleByIdAsync(id);
+                var list = await _repository.GetAllTankPumpByIdAsync(id);
                 if (list == null) return NotFound();
                 return Ok(list);
             }
@@ -70,13 +68,13 @@ namespace webapi.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTankPump([FromBody] CreateStruckInfomationDTO createData)
+        public async Task<IActionResult> CreateTankPump([FromBody] CreateTankPumpDTO createData)
         {
             try
             {
-                var query = createData.ToCreateStruckInfoDTO();
-                await _repository.CreateStruckInfo(query);
-                return CreatedAtAction(nameof(GetPageByID), new { id = query.id }, query.ToStruckInfomationDTO());
+                var query = createData.ToCreateTankStrucks();
+                await _repository.CreateTankPump(query);
+                return CreatedAtAction(nameof(GetPageByID), new { id = query.id }, query.ToTankPumpDataDTO());
             }
             catch (Exception ex)
             {
@@ -90,13 +88,13 @@ namespace webapi.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTankPump([FromRoute] int id, UpdatekInfomationDTO updatekInfomation)
+        public async Task<IActionResult> UpdateTankPump([FromRoute] int id, UpdateTankPumpDTO updateTankPump)
         {
             try
             {
-                var query = await _repository.UpdateStruckInfo(id, updatekInfomation);
+                var query = await _repository.UpdateTankPump(id, updateTankPump);
                 if (query == null) return NotFound();
-                return Ok(query.ToStruckInfomationDTO());
+                return Ok(query.ToTankPumpDataDTO());
             }
             catch (Exception ex)
             {
@@ -114,7 +112,7 @@ namespace webapi.Controllers
         {
             try
             {
-                var query = await _repository.DeleteStruckInfo(id);
+                var query = await _repository.DeleteTankPump(id);
                 if (query == null) return NotFound();
                 return NoContent();
             }

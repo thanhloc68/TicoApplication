@@ -24,7 +24,8 @@ builder.Services.AddControllers()
 builder.Services.AddScoped<IStruckScaleRepository, StruckScaleRepository>();
 builder.Services.AddScoped<IStruckInfomationRepository, StruckInfoRepository>();
 builder.Services.AddScoped<ITankStruckRepository, TankStruckRepository>();
-
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
     builder.WithOrigins("*")

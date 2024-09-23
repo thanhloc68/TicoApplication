@@ -1,6 +1,6 @@
 ﻿namespace webapi.DTOs.StruckInfo
 {
-    public class UpdatekInfomationDTO
+    public class UpdateInfomationDTO
     {
         public int? id { get; set; }
         public string? carNumber { get; set; }

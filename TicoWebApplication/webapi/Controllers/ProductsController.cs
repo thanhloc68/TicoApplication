@@ -1,33 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using webapi.DTOs.Product;
 using webapi.DTOs.StruckInfo;
 using webapi.Helpers;
-using webapi.Helpers.QueryStruckInfomation;
+using webapi.Helpers.QueryProduct;
 using webapi.Interface;
 using webapi.Mapper;
 using webapi.Wrappers;
+
 namespace webapi.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("/api/[controller]")]
-    public class StruckInfomationController : Controller
+    public class ProductsController : ControllerBase
     {
-        private readonly IStruckInfomationRepository _repository;
-        public StruckInfomationController(IStruckInfomationRepository repository)
+        private readonly IProductRepository _repository;
+        public ProductsController(IProductRepository repository)
         {
             _repository = repository;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllPage(int pageIndex, int pageSize, [FromQuery] QueryObjectStruckInfomation queryObject)
+        public async Task<IActionResult> GetAllPage(int pageIndex, int pageSize, [FromQuery] QueryObjectProduct queryObject)
         {
             try
             {
-                var list = await _repository.GetAllStruckInfosAsync(queryObject);
-                var data = list.Select(x => x.ToStruckInfomationDTO()).ToList();
+                var list = await _repository.GetAllProductsAsync(queryObject);
+                var data = list.Select(x => x.ToProductInfomationDTO()).ToList();
                 var totalItem = data.Count();
                 var totalPage = (int)Math.Ceiling((double)totalItem / pageSize);
                 //Get Page
                 var pagedData = PaginationHelper.GetPagedData(data, pageIndex, pageSize);
-                var response = new PagedResponse<StruckInfomationDTO>(data, pageIndex, pageSize, totalPage);
+                var response = new PagedResponse<ProductInfomationDTO>(data, pageIndex, pageSize, totalPage);
                 return Ok(response);
             }
             catch (ArgumentException ex)
@@ -50,7 +52,7 @@ namespace webapi.Controllers
         {
             try
             {
-                var list = await _repository.GetAllStruckInfosByIdAsync(id);
+                var list = await _repository.GetAllProductsByIdAsync(id);
                 if (list == null) return NotFound();
                 return Ok(list);
             }
@@ -66,13 +68,13 @@ namespace webapi.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateStruckInfomation([FromBody] CreateStruckInfomationDTO createData)
+        public async Task<IActionResult> CreateProductsInfomation([FromBody] CreateProductDTO createData)
         {
             try
             {
-                var query = createData.ToCreateStruckInfoDTO();
-                await _repository.CreateStruckInfo(query);
-                return CreatedAtAction(nameof(GetPageByID), new { id = query.id }, query.ToStruckInfomationDTO());
+                var query = createData.ToCreateProduct();
+                await _repository.CreateProducts(query);
+                return CreatedAtAction(nameof(GetPageByID), new { id = query.id }, query.ToProductInfomationDTO());
             }
             catch (Exception ex)
             {
@@ -86,13 +88,13 @@ namespace webapi.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStruckInfomation([FromRoute] int id, UpdateInfomationDTO updatekInfomation)
+        public async Task<IActionResult> UpdateProducts([FromRoute] int id, UpdateProductDTO updateData)
         {
             try
             {
-                var query = await _repository.UpdateStruckInfo(id, updatekInfomation);
+                var query = await _repository.UpdateProducts(id, updateData);
                 if (query == null) return NotFound();
-                return Ok(query.ToStruckInfomationDTO());
+                return Ok(query.ToProductInfomationDTO());
             }
             catch (Exception ex)
             {
@@ -106,11 +108,11 @@ namespace webapi.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStruckInfomation([FromRoute] int id)
+        public async Task<IActionResult> DeleteProducts([FromRoute] int id)
         {
             try
             {
-                var query = await _repository.DeleteStruckInfo(id);
+                var query = await _repository.DeleteProducts(id);
                 if (query == null) return NotFound();
                 return NoContent();
             }

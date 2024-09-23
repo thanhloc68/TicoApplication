@@ -14,14 +14,14 @@ namespace webapi.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<TankStrucks?> CreateStruckScale(TankStrucks tankStrucks)
+        public async Task<TankStrucks?> CreateTankPump(TankStrucks tankStrucks)
         {
             await _dbContext.AddAsync(tankStrucks);
             await _dbContext.SaveChangesAsync();
             return tankStrucks;
         }
 
-        public async Task<TankStrucks?> DeleteStruckScale(int id)
+        public async Task<TankStrucks?> DeleteTankPump(int id)
         {
             var query = await _dbContext.TankStruck.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;
@@ -30,9 +30,11 @@ namespace webapi.Repository
             return query;
         }
 
-        public async Task<List<TankStrucks>> GetAllStruckScaleAsync(QueryObjectTankPump query)
+        public async Task<List<TankStrucks>> GetAllTankPumpAsync(QueryObjectTankPump query)
         {
-            var list = _dbContext.TankStruck.AsNoTracking().AsQueryable();
+            var list = _dbContext.TankStruck
+                .Include(x => x.StruckInfo)
+                .AsNoTracking().AsQueryable();
             if (!string.IsNullOrWhiteSpace(query.sourceOfGoods)) list = list.Where(x => x.sourceOfGoods != null && x.sourceOfGoods.Contains(query.sourceOfGoods));
             if (!string.IsNullOrWhiteSpace(query.SortBy))
             {
@@ -46,25 +48,48 @@ namespace webapi.Repository
             return data;
         }
 
-        public async Task<TankStrucks?> GetAllStruckScaleByIdAsync(int id)
+        public async Task<TankStrucks?> GetAllTankPumpByIdAsync(int id)
         {
             var query = await _dbContext.TankStruck.FindAsync(id);
             if (query == null) return null;
             return query;
         }
 
-        public async Task<TankStrucks?> UpdateStruckScale(int id, UpdateTankPumpDTO tankStrucks)
+        public async Task<TankStrucks?> UpdateTankPump(int id, UpdateTankPumpDTO? tankPumps)
         {
             var query = await _dbContext.TankStruck.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;
-            query.pumpVolume = tankStrucks?.pumpVolume;
-            query.requestedVolume = tankStrucks?.requestedVolume;
-            query.sourceOfGoods = tankStrucks?.sourceOfGoods;
-            query.startTimePump = tankStrucks?.startTimePump;
-            query.endTimePump = tankStrucks?.endTimePump;
-            query.createDate = tankStrucks?.createDate;
-            query.processing = tankStrucks?.processing;
+
+            // Update sourceOfGoods and requestedVolume if not set and processing hasn't started
+            if (query.requestedVolume != 0 && query.processing != 0 && string.IsNullOrEmpty(query.sourceOfGoods))
+            {
+                query.sourceOfGoods = tankPumps?.sourceOfGoods ?? query.sourceOfGoods;
+                query.requestedVolume = tankPumps?.requestedVolume ?? query.requestedVolume;
+
+                // Start processing if all necessary fields are filled
+                if (query.requestedVolume != 0 && !string.IsNullOrEmpty(query.sourceOfGoods))
+                {
+                    query.processing = 1; // Mark as processing
+                    query.startTimePump = DateTime.Now;
+                }
+            }
+
+            // Handle pumping progress
+            if (query.requestedVolume > 0 && query.processing == 1 && tankPumps?.pumpVolume <= query.requestedVolume)
+            {
+                query.pumpVolume = tankPumps.pumpVolume ?? query.pumpVolume; // Only update if pumpVolume is provided
+                query.endTimePump = DateTime.Now;
+
+                // Complete processing if pumpVolume matches requestedVolume
+                if (query.pumpVolume == query.requestedVolume && query.processing != 2)
+                {
+                    query.processing = 2; // Mark as completed
+                }
+            }
+
+            // Save all changes after the updates
             await _dbContext.SaveChangesAsync();
+
             return query;
         }
     }

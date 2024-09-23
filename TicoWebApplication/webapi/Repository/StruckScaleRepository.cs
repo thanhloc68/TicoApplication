@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using webapi.Data;
 using webapi.DTOs.StruckScale;
 using webapi.Helpers.QueryStruckScale;
@@ -31,7 +32,11 @@ namespace webapi.Repository
 
         public async Task<List<StruckScales>> GetAllStruckScaleAsync(QueryObjectStruckScale query)
         {
-            var list = _dbContext.StruckScale.AsNoTracking().AsQueryable();
+            DateTime dateTime = DateTime.Now;
+            DateTime DayNow = dateTime.AddDays(-1);
+            var list = _dbContext.StruckScale
+                .Include(x => x.StruckInfo)
+                .AsNoTracking().AsQueryable();
             if (!string.IsNullOrWhiteSpace(query.styleScale)) list = list.Where(x => x.styleScale != null && x.styleScale.Contains(query.styleScale));
             if (!string.IsNullOrWhiteSpace(query.SortBy))
             {
@@ -41,6 +46,7 @@ namespace webapi.Repository
                     _ => list // Nếu SortBy không khớp với bất kỳ giá trị nào, không thay đổi thứ tự
                 };
             }
+            list = list.Where(x => x.createDate >= DayNow || x.secondScale == 0);
             var data = await list.ToListAsync();
             return data;
         }
@@ -56,15 +62,27 @@ namespace webapi.Repository
         {
             var query = await _dbContext.StruckScale.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;
-            query.firstScale = struckInfo.firstScale;
-            query.secondScale = struckInfo.secondScale;
-            query.results = struckInfo.results;
-            query.styleScale = struckInfo.styleScale;
-            query.firstScaleDate = struckInfo.firstScaleDate;
-            query.secondScaleDate = struckInfo.secondScaleDate;
-            query.createDate = struckInfo.createDate;
-            query.isDone = struckInfo.isDone;
-            query.struckID = struckInfo.struckID;
+            if (query.firstScale == 0)
+            {
+                query.firstScale = struckInfo.firstScale;
+                query.firstScaleDate = DateTime.Now;
+                query.isDone = false;
+            }
+            if (query.secondScale == 0)
+            {
+                query.secondScale = struckInfo.secondScale;
+                query.results = struckInfo.firstScale - struckInfo.secondScale;
+                if (query.results != null && query.results > 0)
+                {
+                    query.styleScale = "Nhập hàng";
+                }
+                else
+                {
+                    query.styleScale = "Xuất hàng";
+                    if (query.results.HasValue) query.results = Math.Abs((double)query.results);
+                }
+                query.secondScaleDate = DateTime.Now;
+            }
             await _dbContext.SaveChangesAsync();
             return query;
         }
