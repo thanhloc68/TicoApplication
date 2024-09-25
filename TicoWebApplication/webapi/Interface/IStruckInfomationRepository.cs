@@ -9,7 +9,7 @@ namespace webapi.Interface
         Task<List<StruckInfo>> GetAllStruckInfosAsync(QueryObjectStruckInfomation query);
         Task<StruckInfo?> GetAllStruckInfosByIdAsync(int id);
         Task<StruckInfo?> CreateStruckInfo(StruckInfo struckInfo);
-        Task<StruckInfo?> UpdateStruckInfo(int id, UpdatekInfomationDTO updatekInfomation);
+        Task<StruckInfo?> UpdateStruckInfo(int id, UpdateInfomationDTO updateInfomation);
         Task<StruckInfo?> DeleteStruckInfo(int id);
     }
 }

@@ -49,7 +49,7 @@ namespace webapi.Repository
             if (query == null) return null;
             return query;
         }
-        public async Task<StruckInfo?> UpdateStruckInfo(int id, UpdatekInfomationDTO struckInfo)
+        public async Task<StruckInfo?> UpdateStruckInfo(int id, UpdateInfomationDTO struckInfo)
         {
             var query = await _dbContext.StruckInfo.FirstOrDefaultAsync(x => x.id == id);
             if (query == null) return null;

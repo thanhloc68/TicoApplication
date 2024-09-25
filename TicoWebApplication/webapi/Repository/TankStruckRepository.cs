@@ -89,7 +89,6 @@ namespace webapi.Repository
 
             // Save all changes after the updates
             await _dbContext.SaveChangesAsync();
-
             return query;
         }
     }

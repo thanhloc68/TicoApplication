@@ -86,11 +86,11 @@ namespace webapi.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStruckInfomation([FromRoute] int id, UpdateInfomationDTO updatekInfomation)
+        public async Task<IActionResult> UpdateStruckInfomation([FromRoute] int id, UpdateInfomationDTO updateInfomation)
         {
             try
             {
-                var query = await _repository.UpdateStruckInfo(id, updatekInfomation);
+                var query = await _repository.UpdateStruckInfo(id, updateInfomation);
                 if (query == null) return NotFound();
                 return Ok(query.ToStruckInfomationDTO());
             }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using webapi.DTOs.Product;
-using webapi.DTOs.StruckInfo;
 using webapi.Helpers;
 using webapi.Helpers.QueryProduct;
 using webapi.Interface;
